@@ -33,7 +33,7 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
-                    def fileName = outputFile.name.replace("app",readApkName() + "-" + readVersion() + "-" + releaseTime());
+                    def fileName = outputFile.name.replace("app",readApkName() + "-" + "${variant.versionName}" + "-" + releaseTime());
                     output.outputFile = new File(outputFile.parent, fileName)
                 }
             }
@@ -41,12 +41,6 @@ android {
     }
 }
 
-
-//函数获取版本号
-def readVersion() {
-    def manifestParser = new DefaultManifestParser();
-    return manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile);
-}
 //获取名字
 def readApkName() {
     return "SkyApp";
