@@ -18,8 +18,9 @@ allprojects {
     repositories {
         jcenter()
         //远程仓库
-        maven { url "https://github.com/J2W/mvn-repo-j2w/raw/master/repository" }
-
+//        maven { url "https://github.com/J2W/mvn-repo-j2w/raw/master/repository" }
+        //本地仓库 - 这里换成自己的地址
+        maven { url "file://Users/sky/GitHub/mvn-repo-j2w/repository"}
     }
 }
 
