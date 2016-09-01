@@ -1,7 +1,9 @@
 package sky.skyapp.http;
 
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import sky.skyapp.http.model.Model;
 
 /**
  * @创建人 sky
@@ -10,5 +12,5 @@ import retrofit2.http.POST;
  */
 public interface ITestHttp {
 
-	@POST("") Object login(@Body Object o);
+	@POST("jincan") Call<Model> login(@Body Object o);
 }

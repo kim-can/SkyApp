@@ -47,7 +47,8 @@ public class LoginActivity extends SKYActivity<ILoginBiz> implements ILoginActiv
 		return skyBuilder;
 	}
 
-	@Override protected void initData(Bundle bundle) {}
+	@Override protected void initData(Bundle bundle) {
+	}
 
 	/**
 	 * 登陆
