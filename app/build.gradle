@@ -22,7 +22,9 @@ android {
             keyPassword KEY_PASSWORD
         }
     }
-
+    lintOptions {
+        abortOnError false
+    }
     buildTypes {
         debug {
             minifyEnabled false
