@@ -47,10 +47,12 @@ android:
   #JDK版本
   jdk:
   - oraclejdk8
-  #Grale
-  Gradle:
-  - wget http://services.gradle.org/distributions/gradle-2.14.bin.zip
+
+  before_install:
+  # Gradle
+  - wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
   - unzip gradle-2.14-bin.zip
   - export GRADLE_HOME=$PWD/gradle-2.14
   - export PATH=$GRADLE_HOME/bin:$PATH
+
 
