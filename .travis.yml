@@ -46,13 +46,15 @@ android:
       - $HOME/.gradle/wrapper/
   #JDK版本
   jdk:
-  - oraclejdk8
+    - oraclejdk8
 
   before_install:
   # Gradle
-  - wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
-  - unzip gradle-2.14-bin.zip
-  - export GRADLE_HOME=$PWD/gradle-2.14
-  - export PATH=$GRADLE_HOME/bin:$PATH
+    - wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
+    - unzip gradle-2.14-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-2.14
+    - export PATH=$GRADLE_HOME/bin:$PATH
 
+  # 执行指令
+  script: gradle connectedAndroidTest
 
