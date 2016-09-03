@@ -1,0 +1,49 @@
+language: android
+
+android:
+  components:
+    # 使用 #来写注释
+    #如果需要用到tools里面相关的命令，如下添加，我认为默认添加进去就可以了
+    - tools
+    # platform-tools有两种添加方式，带版本号就是指定版本，如果不指定版本，使用最新版本的，
+    # 个人感觉最好使用项目里面相同的版本
+    - platform-tools-24.0.0
+    # Android sdk版本，如果项目里面有多个子项目，并且使用了多个版本的，这里可以指定
+    - android-24
+    # extra android support
+    - extra-android-m2repository
+    - extra-android-support
+    # google play service
+    - extra-google-google_play_services
+    # google addon extra
+    - addon-google_apis-google-19
+    # 或者全家桶的意思吧
+    - extra
+    # 如果你需要使用模拟器测试编译出来的安装包，你需要最少添加一个系统镜像配置
+    - sys-img-armeabi-v7a-android-24
+    - sys-img-x86-android-22
+
+  #默认travis 会接受所有的 Licenses(许可证),但是你也可以定义自己的白名单
+  #licenses:
+  #    - 'android-sdk-preview-license-52d11cd2'
+  #   - 'android-sdk-license-.+'
+  #  - 'google-gdk-license-.+'
+
+  #添加模拟器
+  # Emulator Management: Create, Start and Wait
+  before_script:
+    - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+    - emulator -avd test -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
+
+  #构建的时候，你肯定希望有一个干净的系统，所有需要清除缓存
+  before_cache:
+    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  cache:
+    directories:
+      - $HOME/.gradle/caches/
+      - $HOME/.gradle/wrapper/
+
+  jdk:
+  - oraclejdk8
