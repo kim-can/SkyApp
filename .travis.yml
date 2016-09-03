@@ -1,5 +1,5 @@
 language: android
-
+sudo: required
 android:
   components:
     # 使用 #来写注释
@@ -48,7 +48,3 @@ android:
   jdk:
   - oraclejdk8
 
-before_install:
-- sudo required
-- sudo apt-get update -qq
-- sudo apt-get install -qq [packages list]
