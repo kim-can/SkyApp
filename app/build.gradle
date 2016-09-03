@@ -1,5 +1,3 @@
-import com.android.builder.core.DefaultManifestParser
-
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
