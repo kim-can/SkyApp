@@ -44,6 +44,8 @@ android:
     directories:
       - $HOME/.gradle/caches/
       - $HOME/.gradle/wrapper/
-
+  #JDK版本
   jdk:
   - oraclejdk8
+
+sudo: required
