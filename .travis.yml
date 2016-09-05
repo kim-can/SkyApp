@@ -49,7 +49,7 @@ jdk:
 
 #gradle权限
 before_install:
-  - chmod +x gradlew
+  #- chmod +x gradlew
   - wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
   - unzip gradle-2.14-bin.zip
   - export GRADLE_HOME=$PWD/gradle-2.14
