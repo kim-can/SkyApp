@@ -5,8 +5,7 @@ android:
     # 使用 #来写注释
     #如果需要用到tools里面相关的命令，如下添加，我认为默认添加进去就可以了
     - tools
-    # platform-tools有两种添加方式，带版本号就是指定版本，如果不指定版本，使用最新版本的，
-    # 个人感觉最好使用项目里面相同的版本
+    # 编译版本
     - build-tools-24.0.0
     # Android sdk版本，如果项目里面有多个子项目，并且使用了多个版本的，这里可以指定
     - android-24
@@ -29,11 +28,11 @@ android:
   # - 'google-gdk-license-.+'
 
 # Emulator Management: Create, Start and Wait
-  before_script:
-    - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-    - emulator -avd test -no-audio -no-window &
-    - android-wait-for-emulator
-    - adb shell input keyevent 82 &
+before_script:
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 
 #构建的时候，你肯定希望有一个干净的系统，所有需要清除缓存
 before_cache:
