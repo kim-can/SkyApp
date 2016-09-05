@@ -23,9 +23,6 @@ android:
     - sys-img-armeabi-v7a-android-24
     - sys-img-x86-android-22
 
-before_install:
-  - chmod +x gradlew
-
   #默认travis 会接受所有的 Licenses(许可证),但是你也可以定义自己的白名单
   #licenses:
   #    - 'android-sdk-preview-license-52d11cd2'
@@ -33,16 +30,16 @@ before_install:
   #  - 'google-gdk-license-.+'
   #添加模拟器
   # Emulator Management: Create, Start and Wait
-before_script:
+  before_script:
     - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
     - emulator -avd test -no-audio -no-window &
     - android-wait-for-emulator
     - adb shell input keyevent 82 &
 
   #构建的时候，你肯定希望有一个干净的系统，所有需要清除缓存
-before_cache:
+  before_cache:
     - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-cache:
+  cache:
     directories:
       - $HOME/.gradle/caches/
       - $HOME/.gradle/wrapper/
@@ -50,3 +47,5 @@ cache:
 jdk:
     - oraclejdk8
 
+before_install:
+  - chmod +x gradlew
