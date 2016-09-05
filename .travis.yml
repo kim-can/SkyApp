@@ -23,10 +23,10 @@ android:
     - sys-img-armeabi-v7a-android-24
     - sys-img-x86-android-22
 #默认travis 会接受所有的 Licenses(许可证),但是你也可以定义自己的白名单
-#licenses:
-#    - 'android-sdk-preview-license-52d11cd2'
-#   - 'android-sdk-license-.+'
-#  - 'google-gdk-license-.+'
+  #licenses:
+  # - 'android-sdk-preview-license-52d11cd2'
+  # - 'android-sdk-license-.+'
+  # - 'google-gdk-license-.+'
 
 # Emulator Management: Create, Start and Wait
   before_script:
@@ -50,7 +50,7 @@ jdk:
 #gradle权限
 before_install:
   - chmod +x gradlew
-  - wget http://services.gradle.org/distributions/gradle-1.6-bin.zip
-  - unzip gradle-1.6-bin.zip
-  - export GRADLE_HOME=$PWD/gradle-1.6
+  - wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
+  - unzip gradle-2.14-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-2.14
   - export PATH=$GRADLE_HOME/bin:$PATH
