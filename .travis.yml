@@ -47,7 +47,8 @@ android:
   #JDK版本
   jdk:
     - oraclejdk8
-
+  before_install:
+    - chmod +x gradlew
   # 执行指令
   script: gradle connectedAndroidTest
 
