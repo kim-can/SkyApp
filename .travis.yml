@@ -7,7 +7,7 @@ android:
     - tools
     # platform-tools有两种添加方式，带版本号就是指定版本，如果不指定版本，使用最新版本的，
     # 个人感觉最好使用项目里面相同的版本
-    - platform-tools-24.0.0
+    - platform-tools-22.0.1
     # Android sdk版本，如果项目里面有多个子项目，并且使用了多个版本的，这里可以指定
     - android-24
     # extra android support
