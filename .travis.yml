@@ -50,6 +50,3 @@ android:
   jdk:
     - oraclejdk8
 
-  # 执行指令
-  script: gradle connectedAndroidTest
-
