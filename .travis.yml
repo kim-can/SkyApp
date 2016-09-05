@@ -29,6 +29,8 @@ android:
   #   - 'android-sdk-license-.+'
   #  - 'google-gdk-license-.+'
 
+  before_install:
+    - chmod +x gradlew
   #添加模拟器
   # Emulator Management: Create, Start and Wait
   before_script:
@@ -47,8 +49,7 @@ android:
   #JDK版本
   jdk:
     - oraclejdk8
-  before_install:
-    - chmod +x gradlew
+
   # 执行指令
   script: gradle connectedAndroidTest
 
