@@ -19,20 +19,14 @@ android:
     # 或者全家桶的意思吧
     - extra
     # 如果你需要使用模拟器测试编译出来的安装包，你需要最少添加一个系统镜像配置
-    - sys-img-armeabi-v7a-android-24
-    - sys-img-x86-android-22
+    - sys-img-armeabi-v7a-android-22
 #默认travis 会接受所有的 Licenses(许可证),但是你也可以定义自己的白名单
   #licenses:
   # - 'android-sdk-preview-license-52d11cd2'
   # - 'android-sdk-license-.+'
   # - 'google-gdk-license-.+'
 
-# Emulator Management: Create, Start and Wait
-before_script:
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+
 
 #构建的时候，你肯定希望有一个干净的系统，所有需要清除缓存
 before_cache:
@@ -53,3 +47,13 @@ before_install:
   - unzip gradle-2.14-bin.zip
   - export GRADLE_HOME=$PWD/gradle-2.14
   - export PATH=$GRADLE_HOME/bin:$PATH
+
+# Emulator Management: Create, Start and Wait
+before_script:
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
+script: ./gradlew connectedAndroidTest
