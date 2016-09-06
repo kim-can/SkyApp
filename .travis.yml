@@ -27,6 +27,7 @@ before_install:
 
 
 script: gradle assembleRelease
+
 deploy:
   provider: releases
   api_key:
