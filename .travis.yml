@@ -34,5 +34,3 @@ deploy:
   file: app/build/outputs/apk/app-release.apk
   on:
     repo: skyJinc/SkyApp
-
-before_install:
