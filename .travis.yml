@@ -17,13 +17,14 @@ cache:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 before_install:
-- wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
-- unzip gradle-2.14-bin.zip
-- export GRADLE_HOME=$PWD/gradle-2.14
-- export PATH=$GRADLE_HOME/bin:$PATH
-- gem install fir-cli
-  after_deploy:
-    - fir p app/build/outputs/apk/app-release.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
+  - wget http://services.gradle.org/distributions/gradle-2.14-bin.zip
+  - unzip gradle-2.14-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-2.14
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  - gem install fir-cli
+
+after_deploy:
+  - fir p app/build/outputs/apk/app-release.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
 
 
 script: gradle assembleRelease
