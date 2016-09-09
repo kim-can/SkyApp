@@ -28,8 +28,7 @@ public class ListAdapter extends SKYRVAdapter<ListModel, ListAdapter.ItemHolder>
 
 	@Override public ItemHolder newViewHolder(ViewGroup viewGroup, int i) {
 		View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list, viewGroup, false);
-		ItemHolder itemHolder = new ItemHolder(view);
-		return itemHolder;
+		return new ItemHolder(view);
 	}
 
 	/**

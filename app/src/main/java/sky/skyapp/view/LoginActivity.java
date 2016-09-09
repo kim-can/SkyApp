@@ -47,15 +47,14 @@ public class LoginActivity extends SKYActivity<ILoginBiz> implements ILoginActiv
 		return skyBuilder;
 	}
 
-	@Override protected void initData(Bundle bundle) {
-	}
+	@Override protected void initData(Bundle bundle) {}
 
 	/**
 	 * 登陆
 	 */
 	@OnClick(R.id.email_sign_in_button) public void onLogin() {
 		for (int i = 0; i < 3; i++) {
-			biz().login(mEmailView.getText().toString()+":"+i, mPasswordView.getText().toString()+":"+i);
+			biz().login(mEmailView.getText().toString() + ":" + i, mPasswordView.getText().toString() + ":" + i);
 		}
 	}
 

@@ -17,7 +17,7 @@ import sky.skyapp.view.model.ListModel;
  * @类描述 一句话描述你的业务
  */
 @Impl(ListBiz.class)
-public interface IListBiz extends SKYIBiz {
+interface IListBiz extends SKYIBiz {
 
 	/**
 	 * 加载数据

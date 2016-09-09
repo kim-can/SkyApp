@@ -19,7 +19,7 @@ import sky.skyapp.http.model.Model;
  * @类描述 一句话描述你的业务
  */
 @Impl(LoginBiz.class)
-public interface ILoginBiz extends SKYIBiz {
+interface ILoginBiz extends SKYIBiz {
 
 	/**
 	 * 登陆
