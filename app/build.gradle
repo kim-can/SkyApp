@@ -9,14 +9,16 @@ android {
         applicationId "sky.skyapp"
         minSdkVersion 14
         targetSdkVersion 22
-
         // 版本
+        versionCode 1
         if (project.hasProperty("SKY_VERSION")) {
             if (!project.property("SKY_VERSION").equals("0")) {
                 versionCode Integer.valueOf(project.property("SKY_VERSION"))
             }
         }
+
         // 版本名称
+        versionName "1.0"
         if (project.hasProperty("SKY_VERSION_NAME")) {
             if (!project.property("SKY_VERSION_NAME").equals("0")) {
                 versionName project.property("SKY_VERSION_NAME")
