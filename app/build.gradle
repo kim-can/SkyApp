@@ -54,6 +54,13 @@ android {
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each {
+            def file = it.outputFile
+            it.outputFile = new File(file.parent, file.name.replace(".apk", "-${variant.versionName}.apk"))
+        }
+    }
 }
 
 dependencies {
