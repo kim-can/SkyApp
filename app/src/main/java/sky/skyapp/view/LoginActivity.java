@@ -12,6 +12,7 @@ import jc.sky.core.Impl;
 import jc.sky.view.SKYActivity;
 import jc.sky.view.SKYBuilder;
 import sky.skyapp.R;
+import sky.skyapp.helper.MyProHelper;
 
 @Impl(LoginActivity.class)
 interface ILoginActivity {
@@ -57,6 +58,14 @@ public class LoginActivity extends SKYActivity<ILoginBiz> implements ILoginActiv
 			biz().login(mEmailView.getText().toString() + ":" + i, mPasswordView.getText().toString() + ":" + i);
 		}
 	}
+
+	/**
+	 * 显示渠道
+	 */
+	@OnClick(R.id.btn_show_channel) public void onShowChannel() {
+		MyProHelper.toast().show(MyProHelper.channel().getChannel());
+	}
+
 
 	@Override public void loading(boolean ishow) {
 		mLoginFormView.setVisibility(ishow ? View.VISIBLE : View.GONE);

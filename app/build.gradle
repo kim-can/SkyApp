@@ -11,6 +11,9 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
+        //gradle 多渠道打包 默认渠道
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sky"]
     }
     signingConfigs {
         release {
@@ -38,6 +41,17 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
+        }
+    }
+
+    //gradle 多渠道打包
+    productFlavors {
+
+//        jc {}
+//        j2w {}
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
 }

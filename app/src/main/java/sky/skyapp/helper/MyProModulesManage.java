@@ -3,6 +3,8 @@ package sky.skyapp.helper;
 import android.app.Application;
 
 import jc.sky.modules.SKYModulesManage;
+import sky.skyapp.helper.modules.DBManager;
+import sky.skyapp.helper.modules.ChannelManage;
 
 /**
  * @创建人 sky
@@ -11,11 +13,14 @@ import jc.sky.modules.SKYModulesManage;
  */
 public class MyProModulesManage extends SKYModulesManage {
 
-	private DBManager dbManager; // 数据库
+	private DBManager dbManager;		// 数据库
+
+	private ChannelManage	channelManage;
 
 	public MyProModulesManage(Application application) {
 		super(application);
 		dbManager = new DBManager(application);
+		channelManage = new ChannelManage(application);
 	}
 
 	/**
@@ -25,5 +30,14 @@ public class MyProModulesManage extends SKYModulesManage {
 	 */
 	public DBManager getDbManager() {
 		return dbManager;
+	}
+
+	/**
+	 * 渠道管理器
+	 * 
+	 * @return
+	 */
+	public ChannelManage getChannelManage() {
+		return channelManage;
 	}
 }
