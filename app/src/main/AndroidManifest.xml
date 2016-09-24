@@ -26,6 +26,7 @@
 
         <activity android:name=".view.ListActivity"/>
 
+        <activity android:name=".view.animation.AnimationTestActivity"/>
         <!-- 多渠道打包-->
         <meta-data
             android:name="UMENG_CHANNEL"

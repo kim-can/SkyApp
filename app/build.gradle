@@ -3,11 +3,12 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "sky.skyapp"
         minSdkVersion 14
+        //noinspection OldTargetApi
         targetSdkVersion 22
         // 版本
         versionCode 1
