@@ -111,10 +111,7 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 
 	@Override public void onCreate() {
 		super.onCreate();
-		MyProHelper.Bind bind = new SKYHelper.Bind();
-		bind.setSkyBind(this);
-		bind.Inject(this);
-
+		MyProHelper.newBind().setSkyBind(this).Inject(this);
 	}
 
 	@Override public int layoutLoading() {
