@@ -1,20 +1,24 @@
 package sky.skyapp;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
 import java.lang.reflect.Method;
 
 import jc.sky.ISKYBind;
+import jc.sky.SKYHelper;
 import jc.sky.core.plugin.DisplayStartInterceptor;
 import jc.sky.modules.SKYModulesManage;
+import jc.sky.modules.log.L;
 import jc.sky.modules.methodProxy.SKYMethods;
 import jc.sky.view.common.SKYIViewCommon;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sky.skyapp.helper.MyProHelper;
 import sky.skyapp.helper.MyProModulesManage;
+import sky.skyapp.helper.modules.FakeCrashManage;
 import sky.skyapp.view.interceptor.MyProStartInterceptor;
 
 /**
@@ -35,12 +39,33 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 		switch (BuildConfig.SKY) {
 			case 0:// 测试环境
 				bool = true;
+				L.plant(new CrashReportingTree());
 				break;
 			case 1:// 线上环境
 				bool = false;
+				L.plant(new L.DebugTree());
 				break;
 		}
 		return bool;
+	}
+
+	/** A tree which logs important information for crash reporting. */
+	private static class CrashReportingTree extends L.Tree {
+		@Override protected void log(int priority, String tag, String message, Throwable t) {
+			if (priority == Log.VERBOSE || priority == Log.DEBUG) {
+				return;
+			}
+
+			FakeCrashManage.log(priority, tag, message);
+
+			if (t != null) {
+				if (priority == Log.ERROR) {
+					FakeCrashManage.logError(t);
+				} else if (priority == Log.WARN) {
+					FakeCrashManage.logWarning(t);
+				}
+			}
+		}
 	}
 
 	/**
@@ -49,7 +74,7 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 	 * @return
 	 */
 	@Override public SKYModulesManage getModulesManage() {
-		return new MyProModulesManage(this);
+		return new MyProModulesManage();
 	}
 
 	/**
@@ -86,7 +111,10 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 
 	@Override public void onCreate() {
 		super.onCreate();
-		MyProHelper.bind(this);
+		MyProHelper.Bind bind = new SKYHelper.Bind();
+		bind.setSkyBind(this);
+		bind.Inject(this);
+
 	}
 
 	@Override public int layoutLoading() {

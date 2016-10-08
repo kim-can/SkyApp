@@ -56,20 +56,22 @@ public class LoginActivity extends SKYActivity<ILoginBiz> implements ILoginActiv
 	 * 登陆
 	 */
 	@OnClick(R.id.email_sign_in_button) public void onLogin() {
-//		for (int i = 0; i < 3; i++) {
-//			biz().login(mEmailView.getText().toString() + ":" + i, mPasswordView.getText().toString() + ":" + i);
-//		}
-
-
-		try {
-			int CLIENT_VERSION_CODE = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-			String CLIENT_VERSION_NAME = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-			MyProHelper.toast().show("CLIENT_VERSION_CODE:"+CLIENT_VERSION_CODE+",CLIENT_VERSION_NAME"+CLIENT_VERSION_NAME);
-
-		} catch (PackageManager.NameNotFoundException e) {
-			e.printStackTrace();
+		for (int i = 0; i < 3; i++) {
+			biz().login(mEmailView.getText().toString() + ":" + i, mPasswordView.getText().toString() + ":" + i);
 		}
 
+
+//		try {
+//			int CLIENT_VERSION_CODE = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+//			String CLIENT_VERSION_NAME = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+//			MyProHelper.toast().show("CLIENT_VERSION_CODE:"+CLIENT_VERSION_CODE+",CLIENT_VERSION_NAME"+CLIENT_VERSION_NAME);
+//
+//		} catch (PackageManager.NameNotFoundException e) {
+//			e.printStackTrace();
+//		}
+
+//		Object o = null;
+//		o.toString();
 
 	}
 

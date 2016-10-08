@@ -2,7 +2,9 @@ package sky.skyapp.helper;
 
 import android.app.Application;
 
+import jc.sky.ISKYBind;
 import jc.sky.modules.SKYModulesManage;
+import jc.sky.view.common.SKYIViewCommon;
 import sky.skyapp.helper.modules.DBManager;
 import sky.skyapp.helper.modules.ChannelManage;
 
@@ -13,12 +15,13 @@ import sky.skyapp.helper.modules.ChannelManage;
  */
 public class MyProModulesManage extends SKYModulesManage {
 
-	private DBManager dbManager;		// 数据库
+	private DBManager		dbManager;		// 数据库
 
 	private ChannelManage	channelManage;
 
-	public MyProModulesManage(Application application) {
-		super(application);
+
+	@Override public void init(ISKYBind iskyBind, SKYIViewCommon skyiViewCommon) {
+		super.init(iskyBind, skyiViewCommon);
 		dbManager = new DBManager(application);
 		channelManage = new ChannelManage(application);
 	}

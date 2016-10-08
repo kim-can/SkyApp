@@ -2,6 +2,7 @@ package sky.skyapp.helper.modules;
 
 import android.app.Application;
 
+import javax.inject.Inject;
 
 /**
  * @创建人 sky
@@ -9,7 +10,8 @@ import android.app.Application;
  * @类描述
  */
 public class DBManager {
-    public DBManager(Application j2WApplication) {
 
-    }
+	public DBManager(Application j2WApplication) {
+
+	}
 }
