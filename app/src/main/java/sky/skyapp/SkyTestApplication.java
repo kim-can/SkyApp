@@ -9,7 +9,9 @@ import java.lang.reflect.Method;
 
 import jc.sky.ISKYBind;
 import jc.sky.SKYHelper;
+import jc.sky.core.exception.SKYHttpException;
 import jc.sky.core.plugin.DisplayStartInterceptor;
+import jc.sky.core.plugin.SKYHttpErrorInterceptor;
 import jc.sky.modules.SKYModulesManage;
 import jc.sky.modules.log.L;
 import jc.sky.modules.methodProxy.SKYMethods;
@@ -51,6 +53,7 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 
 	/** A tree which logs important information for crash reporting. */
 	private static class CrashReportingTree extends L.Tree {
+
 		@Override protected void log(int priority, String tag, String message, Throwable t) {
 			if (priority == Log.VERBOSE || priority == Log.DEBUG) {
 				return;
@@ -87,7 +90,7 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 
 		switch (BuildConfig.SKY) {
 			case 0:// 测试环境
-				builder.baseUrl("http://www.jincanhsen.com");
+				builder.baseUrl("https://api.github.com");
 				break;
 			case 1:// 线上环境
 				builder.baseUrl("http://www.baidu.com");
@@ -106,6 +109,12 @@ public class SkyTestApplication extends Application implements ISKYBind, SKYIVie
 	 */
 	@Override public SKYMethods getMethodInterceptor(SKYMethods.Builder builder) {
 		builder.setDisplayStartInterceptor(new MyProStartInterceptor());
+		builder.addHttpErrorInterceptor(new SKYHttpErrorInterceptor() {
+
+			@Override public <T> void methodError(Class<T> aClass, Method method, int i, SKYHttpException e) {
+				L.i(method.getName() + " code:" + i + ", message:" + e.getMessage());
+			}
+		});
 		return builder.build();
 	}
 

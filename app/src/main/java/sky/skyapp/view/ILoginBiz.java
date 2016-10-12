@@ -1,6 +1,7 @@
 package sky.skyapp.view;
 
 import java.io.IOException;
+import java.util.List;
 
 import jc.sky.SKYHelper;
 import jc.sky.core.Impl;
@@ -10,7 +11,10 @@ import jc.sky.modules.log.L;
 import jc.sky.modules.methodProxy.Background;
 import jc.sky.modules.threadpool.BackgroundType;
 import retrofit2.Call;
+import retrofit2.Response;
+import sky.skyapp.helper.MyProHelper;
 import sky.skyapp.http.ITestHttp;
+import sky.skyapp.http.model.Contributor;
 import sky.skyapp.http.model.Model;
 
 /**
@@ -36,6 +40,8 @@ interface ILoginBiz extends SKYIBiz {
 	 */
 	void updateBtn();
 
+	void cancel();
+
 }
 
 class LoginBiz extends SKYBiz<ILoginActivity> implements ILoginBiz {
@@ -44,22 +50,29 @@ class LoginBiz extends SKYBiz<ILoginActivity> implements ILoginBiz {
 		L.i("我是执行的:" + s + ":" + s1);
 		ui().loading(true);
 
-		L.i("地址"+SKYHelper.httpAdapter().baseUrl().url());
+		L.i("地址" + SKYHelper.httpAdapter().baseUrl().url());
 
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+
+		Call<List<Contributor>> call = http(ITestHttp.class).contributors("square", "retrofit");
+		List<Contributor> list = httpBody(call);
+
+		for (Contributor contributor : list) {
+			System.out.println(contributor.login + " (" + contributor.contributions + ")");
 		}
 
 		ui().changeLoginBtnName("登陆成功啦~~~");
 		ui().loading(false);
 
 		// 跳转
-		ListActivity.intent();
+		// ListActivity.intent();
 	}
 
 	@Override public void updateBtn() {
 		ui().changeLoginBtnName("List更新了~~");
+	}
+
+	@Override
+	public void cancel() {
+		httpCancel();
 	}
 }

@@ -82,6 +82,11 @@ public class LoginActivity extends SKYActivity<ILoginBiz> implements ILoginActiv
 		MyProHelper.toast().show(MyProHelper.channel().getChannel());
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		biz().cancel();
+	}
 
 	@Override public void loading(boolean ishow) {
 		mLoginFormView.setVisibility(ishow ? View.VISIBLE : View.GONE);
